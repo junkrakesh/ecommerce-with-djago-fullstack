@@ -1,0 +1,28 @@
+{% extends "layout.html" %} 
+{% load crispy_forms_tags %}
+{% load i18n %} 
+{% block title %} Order Form {% endblock title %} 
+
+
+{% block content %}
+        {% if messages %}
+        {% include "components/messages.html" %}
+        {% endif %}
+
+
+<div class="row justify-content-center">
+  <div class="col-md-6 bg-dark text-white mt-2">
+        <div class="card-body rounded">
+            <h4 class="text-center mb-4">Order Form</h4>
+            <form method="post">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <div class="text-center">
+                <input type="submit" class="btn btn-success" value="CheckOut">
+            </div>
+            </form>
+        </div>
+  </div>
+</div>
+
+{% endblock content %}

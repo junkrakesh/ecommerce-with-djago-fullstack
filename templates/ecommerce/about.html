@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}About{% endblock title %}
+{% block content %}
+
+{% if messages %}
+{% include "components/messages.html" %}
+{% endif %}
+
+<h1>This is about page</h1>
+
+{% endblock content %}

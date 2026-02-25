@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+
+
+{% block content %}
+{% if messages %}{% include "components/messages.html" %}{% endif %}
+
+{% include "components/crousal.html" %}
+
+
+{% endblock content %}

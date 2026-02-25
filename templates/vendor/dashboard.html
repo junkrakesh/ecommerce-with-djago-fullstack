@@ -1,0 +1,10 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block title %}Vendor_dashboard{% endblock title %} 
+{% block main_content %}
+<!-- massagess display -->
+{% if messages %} {% include "components/messages.html" %} {% endif %}
+<!-- end message display -->
+{% include "components/sidebar.html" %}
+
+{% endblock main_content %}

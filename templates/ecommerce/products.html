@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Products{% endblock title %}
+{% block content %}
+
+{% if messages %}
+{% include "components/messages.html" %}
+{% endif %}
+{% include "components/banner.html" %}
+
+
+{% if products %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 p-5" id="products">
+        {% for item in products %}
+        <div class="col">
+        <a href="{% url 'products-details' item.id %}" class='text-decoration-none text-dark m-0'>
+            <div class="card shadow-sm">
+                <img src="{{item.image.url}}" class="card-img-top" alt="Image 1">
+                <div class="card-body">
+                    <h5 class="card-title" title='{{item.title}}'>{{item.title|slice:':23'}}{% if item.title|length >= 25 %}...
+                    {% else %}
+                    {% endif %}</h5>
+                    <p class="card-text fw-bold">Price :
+                        <small class='text-decoration-line-through text-muted fw-light'>${{item.actual_price}}</small>
+                        <span class="text-success">${{item.discount_price}}</span>
+                        </p>
+                    <a href="{% url 'products-details' item.id %}" class="text-decoration-none text-danger">View More →</a>
+                </div>
+            </div>
+        </a>
+        </div> 
+        
+        {% endfor %}
+        
+    </div>
+    {% else %}
+    <p class='text-center my-2'>No Products Found</p>
+    {% endif %}
+
+{% endblock content %}
+
+  

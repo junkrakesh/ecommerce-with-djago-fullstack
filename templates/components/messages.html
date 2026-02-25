@@ -1,0 +1,11 @@
+<div class="offcanvas offcanvas-top show bg-info" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+  <div class="offcanvas-header text-center">
+    <h5 class="offcanvas-title " id="offcanvasLabel">E-commerce</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  {% for message in messages %}
+  <div class="offcanvas-body text-center" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+    <h2>{{ message }}</h2>
+  </div>
+  {% endfor %}
+</div>

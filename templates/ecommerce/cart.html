@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Cart{% endblock title %}
+{% block content %}
+        {% if messages %}
+        {% include "components/messages.html" %}
+        {% endif %}
+<div class="container py-5">
+    <h1 class="mb-5">Your Shopping Cart</h1>
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Cart Items -->
+            <div class="card mb-4">
+                {% if cartitems %}
+                <div class="card-body">
+                    {% for item in cartitems %}
+                    <div class="row cart-item mb-3">
+                        <div class="col-md-3">
+                            <img src="{{item.product.image.url}}" alt="Product 1" class="img-fluid rounded">
+                        </div>
+                        <div class="col-md-5">
+                            <h5 class="card-title">{{item.product.title}}</h5>
+                            <p class="text-muted">{{item.product.category}}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <div >
+                                <p class="fw-bold">Quantity:{{item.quantity}}</p>
+                                <a href="{% url 'orderitem' item.id item.product.id %}" class="btn btn-outline-success btn-sm" type="button">Buy now</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-end">
+                            <p class="fw-bold">Price:${{item.product.discount_price}}</p>
+                            <a href="{% url 'delete-cart' item.id %}" class="btn btn-outline-danger btn-sm" type="button">
+                                <i class="bi bi-trash"></i>Delete
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="container text-center">
+                    <h3>You have no carts added</h3>
+                </div>
+                
+                {% endif %}
+                
+            </div>
+            <!-- Continue Shopping Button -->
+            <div class="text-start mb-4">
+                <a href="{% url 'products' %}" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left me-2"></i>Continue Shopping
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <!-- Cart Summary -->
+            <div class="card cart-summary">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Order Summary</h5>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Subtotal</span>
+                        <span>$42.20</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Shipping</span>
+                        <span>$10.00</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Tax</span>
+                        <span>$20.00</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <strong>Total</strong>
+                        <strong>$72.20</strong>
+                    </div>
+                    <button class="btn btn-primary w-100">Proceed to Checkout</button>
+                </div>
+            </div>
+            <!-- Promo Code -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Apply Promo Code</h5>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Enter promo code">
+                        <button class="btn btn-outline-secondary" type="button">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
