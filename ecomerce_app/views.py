@@ -24,6 +24,7 @@ def products_page(request):
     }
     return render(request,'ecommerce/products.html',context)
 
+@login_required
 def product_details(request,product_id):
     product = Product.objects.get(id=product_id)
     context = {
